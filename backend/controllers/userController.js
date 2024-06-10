@@ -7,7 +7,7 @@ import { json } from "express";
 // route POST /api/users/auth
 // @accecc Public
 const authUser = asyncHandler(async (req, res) => {
-console.log("authuser wrkd");
+    console.log("authuser wrkd");
     try {
         const { email, password } = req.body
         const user = await User.findOne({ email })
@@ -47,12 +47,14 @@ const registerUser = asyncHandler(async (req, res) => {
         password
     })
     if (user) {
+        console.log('user ', user);
         generateToken(res, user._id)
         res.status(201).json({
             _id: user._id,
             name: user.name,
             email: user.email
         })
+        console.log('generated');
     } else {
         res.status(400)
         throw new Error('Invalid user data')
@@ -86,24 +88,32 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // route PUT /api/users/profile
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id)
-    if (user) {
-        user.name = req.body.name || user.name
-        user.email = req.body.email || user.email
+    try {
+        const user = await User.findById(req.user._id);
+        if (user) {
+            user.name = req.body.name || user.name;
+            user.email = req.body.email || user.email;
 
-        if (req.body.password) {
-            user.password = req.body.password
+            if (req.body.password) {
+                user.password = req.body.password;
+            }
+
+            const updatedUser = await user.save();
+            res.status(200).json({
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+            });
+        } else {
+            console.log('user not found');
+            res.status(404).json({ message: 'User not found' });
         }
-        const updatedUser = await user.save()
-        res.status(200).json({
-            _id: updatedUser._id,
-            name: updatedUser.name,
-            email: updatedUser.email,
-        })
-    } else {
-
+    } catch (error) {
+        console.log('Error updating user profile:', error);
+        res.status(500).json({ message: 'Server error' });
     }
-})
+});
+
 export {
     authUser,
     registerUser,

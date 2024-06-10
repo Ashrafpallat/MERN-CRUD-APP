@@ -44,13 +44,14 @@ const RegisterScreen = () => {
           email,
           password,
         });
-        dispatch(setCredentials(data));
-        navigate("/");
+        // dispatch(setCredentials(data));
+        navigate("/login");
+        toast.success('User Registered, Login Now')
         console.log('reg successful');
       } catch (err) {
         toast.error(err?.data?.message || err.error);
         toast.error(err.message)
-        console.log(err.message);
+        console.log('error',err);
       }
     }
   };
@@ -64,6 +65,7 @@ const RegisterScreen = () => {
             type="text"
             placeholder="Enter name"
             value={name}
+            required
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -74,6 +76,7 @@ const RegisterScreen = () => {
             type="email"
             placeholder="Enter Email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -84,6 +87,7 @@ const RegisterScreen = () => {
             type="password"
             placeholder="Enter password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -94,6 +98,7 @@ const RegisterScreen = () => {
             type="password"
             placeholder="Confirm password"
             value={confirmPassword}
+            required
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>

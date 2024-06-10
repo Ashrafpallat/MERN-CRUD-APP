@@ -36,7 +36,7 @@ const ProfileScreen = () => {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        withCredentials: true,
+                        withCredentials: true,  
                     }
                 );
                 dispatch(setCredentials(data));
@@ -45,7 +45,7 @@ const ProfileScreen = () => {
                 console.log('profile updated successfully');
             } catch (err) {
                 toast.error(err?.data?.message || err.error);
-                console.log(err.message);
+                console.log('err',err);
             }
         }
     };
