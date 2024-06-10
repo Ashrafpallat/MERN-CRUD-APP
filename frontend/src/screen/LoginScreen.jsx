@@ -33,20 +33,28 @@ const LoginScreen = () => {
                 "http://localhost:8000/api/users/auth",
                 { email, password },
                 {
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  withCredentials: true,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
                 }
-              );
-              console.log(data);
+            );
+            console.log(data);
             dispathch(setCredentials(data))
             toast.success('Login successfully')
             navigate('/')
         } catch (err) {
-            console.log('error',err?.data?.message || err.error);
-            console.log(err.message);
-            toast.error(err.message)
+            if (err.response) {
+                // Server responded with a status code other than 2xx
+                const errorMessage = err.response.data || 'Login failed';
+                toast.error(errorMessage);
+            } else if (err.request) {
+                // No response was received from the server
+                toast.error('No response received');
+            } else {
+                // Error setting up the request
+                toast.error(err.message);
+            }
         }
     }
     return (
@@ -62,7 +70,6 @@ const LoginScreen = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
-
                 <Form.Group className="my-2" controlId="password">
                     <Form.Label>password</Form.Label>
                     <Form.Control
