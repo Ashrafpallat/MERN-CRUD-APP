@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
-import { useUpdateUserMutation } from '../slices/usersApiSlice';
+// import { useUpdateUserMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -14,7 +14,7 @@ const ProfileScreen = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const dispatch = useDispatch();
-    const [updateProfile, { isLoading }] = useUpdateUserMutation();
+    // const [updateProfile, { isLoading }] = useUpdateUserMutation();
     const { userInfo } = useSelector((state) => state.auth);
 
     useEffect(() => {

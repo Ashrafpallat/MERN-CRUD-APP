@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from 'react-redux';
-import { useRegisterMutation } from "../slices/usersApiSlice";
+// import { useRegisterMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 
 
@@ -21,7 +21,7 @@ const RegisterScreen = () => {
   const dispatch = useDispatch()
   const { userInfo } = useSelector((state) => state.auth)
 
-  const [register, { isLoading }] = useRegisterMutation()
+  // const [register, { isLoading }] = useRegisterMutation()
   useEffect(() => {
     if (userInfo) {
       navigate('/');

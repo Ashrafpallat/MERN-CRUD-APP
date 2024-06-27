@@ -6,6 +6,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 const port = process.env.PORT || 8000
 import userRoutes from './routes/userRoutes.js'
+import adminRoutes from './routes/adminRoute.js'
 import cors from "cors";
 
 
@@ -24,6 +25,7 @@ app.use(
   );
 
 app.use('/api/users', userRoutes)
+app.use('/api/admin', adminRoutes)
 
 app.get('/', (req, res)=> res.send('Server is ready'))
 

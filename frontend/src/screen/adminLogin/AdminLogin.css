@@ -1,0 +1,37 @@
+/* AdminLogin.css */
+.admin-login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f8f9fa; /* Optional background color */
+  }
+  
+  .admin-login-row {
+    width: 100%;
+  }
+  
+  .admin-login-card {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Optional border */
+    font-family: 'Cinzel', serif;
+  }
+  
+  .admin-login-card-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .admin-login-label {
+    font-family: 'Cinzel', serif;
+  }
+  
+  .admin-login-input {
+    font-family: 'Cinzel', serif;
+  }
+  
+  .admin-login-button {
+    width: 100%;
+  }
+  

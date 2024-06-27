@@ -2,7 +2,7 @@ import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap'
-import { useLoginMutation } from '../slices/usersApiSlice';
+// import { useLoginMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -12,7 +12,7 @@ const Header = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [logoutApiCall] = useLoginMutation()
+    // const [logoutApiCall] = useLoginMutation()
 
     const logoutHandler = async () => { 
         try {
