@@ -43,8 +43,9 @@ const RegisterScreen = () => {
           name,
           email,
           password,
+          image:'',
         });
-        // dispatch(setCredentials(data));
+        dispatch(setCredentials(data));
         navigate("/login");
         toast.success('User Registered, Login Now')
         console.log('reg successful');

@@ -16,7 +16,8 @@ const authUser = asyncHandler(async (req, res) => {
             res.status(201).json({
                 _id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                image: user.image
             })
         } else {
             res.status(401).json('Invalid email or password')
@@ -32,7 +33,7 @@ const authUser = asyncHandler(async (req, res) => {
 // route Post /api/users/users
 // @access PUblic
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, email,image, password } = req.body
 
     const userExists = await User.findOne({ email: email })
     if (userExists) {
@@ -52,7 +53,8 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user._id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            image: user.image
         })
         console.log('generated');
     } else {
@@ -93,6 +95,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         if (user) {
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
+            user.image = req.body.image || user.image
 
             if (req.body.password) {
                 user.password = req.body.password;
@@ -103,6 +106,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
                 _id: updatedUser._id,
                 name: updatedUser.name,
                 email: updatedUser.email,
+                image: updatedUser.image,
             });
         } else {
             console.log('user not found');
