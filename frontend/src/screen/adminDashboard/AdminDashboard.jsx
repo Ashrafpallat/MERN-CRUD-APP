@@ -4,6 +4,9 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import Swal from "sweetalert2";
 import { FaTrash } from 'react-icons/fa';
+import image from "../../assets/image.png";
+import { useSelector } from 'react-redux';
+
 
 
 const AdminDashboard = () => {
@@ -11,6 +14,8 @@ const AdminDashboard = () => {
   const [newUser, setNewUser] = useState({ name: "", email: "", password: "", profilePic: null });
   const [showAddUserModal, setShowAddUserModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { userInfo } = useSelector((state) => state.auth);
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -113,9 +118,10 @@ const AdminDashboard = () => {
             </Button>
           </div>
         </div>
-        <table className="table table-striped">
+        <table className="table table-striped text-center">
           <thead>
             <tr>
+              <th>Image</th>
               <th>Name</th>
               <th>Email</th>
               <th>Actions</th>
@@ -124,13 +130,30 @@ const AdminDashboard = () => {
           <tbody>
             {filteredUsers.map((user) => (
               <tr key={user._id}>
+                <td style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <img
+                    src={user.image || image}
+                    alt="Profile Pic"
+                    className="img-thumbnail rounded-circle"
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                  />
+                </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td><Button variant="" onClick={() => handleDeleteClick(user._id)} >  <FaTrash className='text-danger' /> Delete </Button> </td>
+                <td>
+                  <Button variant="" onClick={() => handleDeleteClick(user._id)}>
+                    <FaTrash className="text-danger" /> Delete
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+
       </div>
 
       <Modal show={showAddUserModal} onHide={() => setShowAddUserModal(false)}>

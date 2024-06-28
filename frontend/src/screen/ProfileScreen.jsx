@@ -133,7 +133,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/authSlice.js";
 import { toast } from "react-toastify";
 import image from "../assets/image.png";
-// import Header from "../components/Header.jsx";
 
 const ProfileScreen = () => {
   const [name, setName] = useState("");
