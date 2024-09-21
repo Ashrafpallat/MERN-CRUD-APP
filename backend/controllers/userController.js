@@ -1,14 +1,13 @@
 import asyncHandler from "express-async-handler";
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
-import { json } from "express";
 
 // @desc Auth user/set token
 // route POST /api/users/auth
 // @accecc Public
 const authUser = asyncHandler(async (req, res) => {
     console.log("authuser wrkd");
-    try {
+    try {  
         const { email, password } = req.body
         const user = await User.findOne({ email })
         if (user && (await user.matchPassword(password))) {
