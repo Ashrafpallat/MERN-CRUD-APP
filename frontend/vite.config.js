@@ -10,8 +10,7 @@ export default defineConfig({
       '/api' : {
         target: process.env.VITE_BACKEND_URL,
         changeOrigin: true
-      },
-    },
-    historyApiFallback: true, // This ensures proper routing for client-side apps
+      }
+    }
   }
 })
