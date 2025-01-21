@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from 'react-toastify'
 
 const LoginScreen = () => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -29,7 +30,7 @@ const LoginScreen = () => {
         try {
             // const res = await login({ email, password }).unwrap()
             const { data } = await axios.post(
-                "http://localhost:8000/api/users/auth",
+                `${import.meta.env.VITE_BACKEND_URL}/api/users/auth`,
                 { email, password },
                 {
                     headers: {

@@ -26,7 +26,7 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        'http://localhost:8000/api/admin/adminLogin',
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/adminLogin`,
         { email, password },
         {
           headers: {

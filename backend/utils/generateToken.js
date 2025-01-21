@@ -15,7 +15,7 @@ const generateToken = (res, userId) => {
     } catch (error) {
         console.log('token error',error);
     }
-
+  
 }
 
 export default generateToken;

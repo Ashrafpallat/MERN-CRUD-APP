@@ -186,7 +186,7 @@ const ProfileScreen = () => {
 
     try {
       const { data } = await axios.put(
-        "http://localhost:8000/api/users/profile",
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/profile`,
         { name, email, password, image: imageUrl },
         {
           headers: {

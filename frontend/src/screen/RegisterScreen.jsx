@@ -39,7 +39,7 @@ const RegisterScreen = () => {
         // const res = await register({ name, email, password }).unwrap();
         // dispatch(setCredentials({ ...res }));
         // navigate('/');
-        const { data } = await axios.post("http://localhost:8000/api/users", {
+        const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, {
           name,
           email,
           password,

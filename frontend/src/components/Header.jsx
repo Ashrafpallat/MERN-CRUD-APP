@@ -17,7 +17,7 @@ const Header = () => {
     const logoutHandler = async () => { 
         try {
             axios
-                .post("http://localhost:8000/api/users/logout", {}, {
+                .post(`${import.meta.env.VITE_BACKEND_URL}/api/users/logout`, {}, {
                     headers: {
                         "Content-Type": "application/json",
                     },

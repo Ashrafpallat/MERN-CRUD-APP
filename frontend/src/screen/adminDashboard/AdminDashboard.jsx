@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/admin/loadUser', {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/admin/loadUser`, {
           withCredentials: true, // Ensure cookies or auth tokens are sent with the request
         });
         setUsers(response.data);
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
     };
 
     axios
-      .post("http://localhost:8000/api/users", userData, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/api/users`, userData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
 
   const deleteUser = (userId) => {
     axios
-      .delete(`http://localhost:8000/api/admin/deleteUser/${userId}`, {
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/api/admin/deleteUser/${userId}`, {
         headers: {
           "Content-Type": "application/json",
         },
